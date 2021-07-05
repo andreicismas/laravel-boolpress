@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<h1>crea post</h1>
 
 <div class="row justify-content-center">
     <a class="pb-5 " href="{{ route('admin.posts.index') }}">Torna alla home</a>

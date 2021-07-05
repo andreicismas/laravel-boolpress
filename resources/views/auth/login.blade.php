@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="row justify-content-center">
+    <a class="pb-5" href="{{ route('posts.index') }}">vai alla home publica</a> 
+</div>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

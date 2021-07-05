@@ -9,4 +9,7 @@ class Post extends Model
     protected $fillable = [
         'title', 'detagli', 'name', 'motivo'
    ];
+   public function user(){
+    return $this->belongsTo("App\User");
+    }
 }

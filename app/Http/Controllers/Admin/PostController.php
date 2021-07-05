@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Post;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -22,7 +24,7 @@ class PostController extends Controller
         return view('admin.posts.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request , Session $authUser)
     {
         $newPostData = $request->all();
 
@@ -34,26 +36,32 @@ class PostController extends Controller
             "motivo" => "required|max:255",
         ]);
 
-
-
+       
         $newPost = new post();
         $newPost->fill($newPostData);
+        $newPost->user_id = $request->user()->id;
         $newPost->save();
 
         return redirect()->route('admin.posts.show', $newPost->id);
     }
 
-    public function show(Post $post)
-    {
+    public function show(Post $post) {
+
+        $user =$post->user;
+        
         return view("admin.posts.show", [
-            "post" => $post
+            "post" => $post,
+            "user" => $user
         ]);
     }
 
     public function edit(Post $post)
     {
+      
+        
         return view("admin.posts.edit", [
-            "post" => $post
+            "post" => $post,
+            // "user" => $post->user
         ]);
     }
 
