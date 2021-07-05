@@ -13,6 +13,7 @@
 </div>
 
 
+
 <div class="row justify-content-center">
 
 
@@ -28,7 +29,7 @@
             <p class="card-text">{{$post->user->email}}</p>
             
             <a href="{{route("admin.posts.show", $post->id)}}" class="btn btn-primary">Dettagli</a>
-            @include('partials.components.deleteBtn', ["id" => $post->id])
+
 
         </div>
     </div>
