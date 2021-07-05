@@ -4,8 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Post;
-
 class CreatePostsTable extends Migration
 {
     /**
@@ -17,11 +15,12 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('name');
-            $table->string('surname');
-            $table->string('new_post');
             $table->timestamps();
+            $table->string('title');
+            $table->text('detagli');
+            $table->string('name');
+            $table->string('motivo');
+
         });
     }
 
