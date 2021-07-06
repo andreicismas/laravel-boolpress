@@ -33,7 +33,22 @@
 
         <div class="form-group">
             <label for="motivo">Reason of post</label>
-            <input type="text" class="form-control" id="motivo" name="motivo" aria-describedby="topicHelp" placeholder="Inserisci l'argomento" value="{{old('motivo',  $post->motivo)}}"">
+            <input type="text" class="form-control" id="motivo" name="motivo" aria-describedby="topicHelp" placeholder="Inserisci l'argomento" value="{{old('motivo',  $post->motivo)}}">
+            <small id=" topicHelp" class="form-text text-muted">Inserisci  l'argomento del Post</small>
+        </div>    
+
+        <div class="form-group">
+            <label >Categories</label>
+            <select name="" id="">
+                <option value="">select category</option>
+                @foreach($categories as $category)
+
+                <option value="{{$category->id}}">
+                    {{$category->name}}
+                </option>
+                    
+                @endforeach
+            </select>
             <small id=" topicHelp" class="form-text text-muted">Inserisci  l'argomento del Post</small>
         </div>
 

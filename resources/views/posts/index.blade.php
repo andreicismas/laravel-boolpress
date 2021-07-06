@@ -20,7 +20,12 @@
             <p class="card-text">{{$post->detagli}}</p>
             <p class="card-text">{{$post->name}}</p>
             <p class="card-text">{{$post->motivo}}</p>
+
+            
             <a href="{{route("posts.show", $post->id)}}" class="btn btn-primary">Dettagli</a>
+            <a href="{{route("admin.posts.edit", $post->id)}}" class="btn btn-primary">modifica</a>
+            <a href="{{route("admin.categories.index", $post->id)}}" class="btn btn-primary">vai in categorie</a>
+
             @include('partials.components.deleteBtn', ["id" => $post->id])
 
         </div>

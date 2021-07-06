@@ -4,12 +4,10 @@
 
     <div class="row justify-content-center">
         <a class="pb-5" href="{{ route('admin.posts.index') }}">Torna alla home</a>
-    </div>
-    <div class="row justify-content-center">
         <a class="pb-5" href="{{ route('admin.posts.create') }}">crea post</a>
     </div>
+    
                 
-
 
     <div class="card" style="width: 18rem;">
          <img src="{{ asset('img\unnamed.png') }}" class="card-img-top" alt="...">
@@ -19,11 +17,12 @@
             
             <p class="card-text">name-- {{$post->user->name}} <br> email--{{$post->user->email}} </p>
             <p class="card-text">{{$post->motivo}}</p>
-         
+            <p class="card-text">{{$post->category ? $post->category->name : '--' }}</p>
+             
 
-            
 
-            <a href="{{route("admin.posts.show", $post->id)}}" class="btn btn-primary">Dettagli</a>
+            <a href="{{route("admin.posts.edit", $post->id)}}" class="btn btn-primary">modifica</a>
+
 
             @include('partials.components.deleteBtn', ["id" => $post->id])
             

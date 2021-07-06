@@ -36,6 +36,22 @@
             <small id="topicHelp" class="form-text text-muted">Inserisci  il motivo  del Post</small>
         </div>
 
+         <div class="form-group">
+            <label >Categories</label>
+            <select name="category_id" >
+                <option value="">select category</option>
+                @foreach($categories as $category)
+
+                <option value="{{$category->id}}">
+                    {{$category->name}}
+                </option>
+                    
+                @endforeach
+            </select>
+            <small id=" topicHelp" class="form-text text-muted">Inserisci  l'argomento del Post</small>
+        </div>
+
+
         <input type="submit" value="Invia"><br>
     </form>
 

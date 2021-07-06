@@ -30,6 +30,7 @@ Route::prefix('admin')
     ->group(function () {
 
         Route::resource("/posts", "PostController");
+        Route::get("/categories", "CategoryController@index")->name('categories.index');
     });
 
 
