@@ -51,6 +51,17 @@
             <small id=" topicHelp" class="form-text text-muted">Inserisci  l'argomento del Post</small>
         </div>
 
+          {{-- <div class="form-check">
+                @foreach($tags as $tag)
+                <label for="" class="form-check-label">{{$tag->name}}
+                     <input name="tags[]"  class="form-check form-check-inline" type="checkbox"  value="{{$tag->id}}" 
+                      {{ $post->tags->contains($tag) ? 'checked' : '' }}>
+                       
+                     {{$tag->name}}
+                </label>
+                @endforeach
+            </div>
+ --}}
 
         <input type="submit" value="Invia"><br>
     </form>

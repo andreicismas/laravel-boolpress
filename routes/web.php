@@ -29,8 +29,9 @@ Route::prefix('admin')
     ->name("admin.")
     ->group(function () {
 
-        Route::resource("/posts", "PostController");
         Route::get("/categories", "CategoryController@index")->name('categories.index');
+        Route::get("/tags", "TagController@index")->name('tags.index');
+        Route::resource("/posts", "PostController");
     });
 
 

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="row justify-content-center">
-    <a class="pb-5" href="{{ route('posts.index') }}">Torna alla home</a>
+    <a class="pb-5" href="{{ route('posts.index') }}">Torna alla home publica</a>
 </div>
 <h1>post general</h1>
 

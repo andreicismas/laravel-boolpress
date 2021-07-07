@@ -6,11 +6,13 @@
 
 
 <div class="row justify-content-center">
-        <a class="pb-5" href="{{ route('posts.index') }}">post publici</a>
-    <a class=" " href="{{ route('admin.posts.index') }}">Torna alla home</a>
+        <a class="mr-5 btn btn-primary" href="{{ route('posts.index') }}">post publici</a>
+    <a class="mr-5 btn btn-primary " href="{{ route('admin.posts.index') }}">Torna alla home</a>
 </div>
 <div class="row justify-content-center">
-    <a class=" " href="{{ route('admin.posts.create') }}">crea nuovo post</a>
+    <a class="mr-5 btn btn-primary " href="{{ route('admin.posts.create') }}">crea nuovo post</a>
+            <a class="mr-5 btn btn-primary" href="{{ route('admin.tags.index') }}">tags</a>
+
 </div>
 
 
@@ -29,10 +31,10 @@
             <p class="card-text">{{$post->motivo}}</p>
             <p class="card-text">{{$post->user->email}}</p>
             <p class="card-text">{{$post->category ? $post->category->name : '--' }}</p>
-
-            
             <a href="{{route("admin.posts.show", $post->id)}}" class="btn btn-primary">Dettagli</a>
             <a href="{{route("admin.posts.edit", $post->id)}}" class="btn btn-primary">edit</a>
+            @include('partials.components.deleteBtn', ["id" => $post->id])
+    
 
 
 

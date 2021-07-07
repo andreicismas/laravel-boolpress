@@ -43,13 +43,42 @@
                 <option value="">select category</option>
                 @foreach($categories as $category)
 
-                <option value="{{$category->id}}">
-                    {{$category->name}}
-                </option>
+                    <option value="{{$category->id}}">
+                        {{$category->name}}
+                    </option>
                     
                 @endforeach
             </select>
             <small id=" topicHelp" class="form-text text-muted">Inserisci  l'argomento del Post</small>
+        </div>
+
+        <div class="formgroup">
+            <label for="">tags</label> <br>
+            <div class="form-check">
+                @foreach($tags as $tag)
+
+               
+                <label for="" class="form-check-label">{{$tag->name}}
+                     <input name="tags[]"  class="form-check form-check-inline" type="checkbox"  value="{{$tag->id}}" 
+                      {{ $post->tags->contains($tag) ? 'checked' : '' }}>
+                       
+                     {{$tag->name}}
+                </label>
+                    
+                @endforeach
+            </div>
+
+
+            {{-- <select name="tags[]" class="from-control" id=""  multiple hight="5">
+             <option value="">select category</option>
+                @foreach($tags as $tag )
+                <option value="{{$tag->id}}">{{$tag->name}}</option>
+                    
+                @endforeach
+            </select>
+         --}}
+
+         
         </div>
 
         <input type="submit" value="Invia"><br>
