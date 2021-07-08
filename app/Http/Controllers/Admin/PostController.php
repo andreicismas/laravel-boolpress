@@ -16,7 +16,14 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy("id", "DESC")->get();
+        $datiInIngresso = session("posts");
+
+        if (isset( $datiInIngresso)) {
+            $posts = ["posts"=>$datiInIngresso];
+        }else{
+
+            $posts = Post::orderBy("id", "DESC")->get();
+        }
         return view("admin.posts.index", [
             "posts" => $posts 
         ]);
