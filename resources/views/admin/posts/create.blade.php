@@ -44,8 +44,6 @@
                 <label for="" class="form-check-label">{{$tag->name}}
                      <input name="tags[]"  class="form-check form-check-inline" type="checkbox"  value="{{$tag->id}}" 
                       >
-                       
-                     {{$tag->name}}
                 </label>
                     
                 @endforeach
