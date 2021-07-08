@@ -10,6 +10,7 @@ use App\Post;
 use App\Tag;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -24,7 +25,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create',[ "categories"=>$categories]);
+        $tags = Tag::all();
+        
+        return view('admin.posts.create',[ "categories"=>$categories,"tags"=>$tags]);
     }
 
     public function store(Request $request , Session $authUser)
@@ -45,6 +48,7 @@ class PostController extends Controller
         $newPost->user_id = $request->user()->id;
 
         $newPost->save();
+        // $post->tags()->sync($formData["tags"]);
 
         return redirect()->route('admin.posts.show', $newPost->id);
     }
@@ -96,17 +100,30 @@ class PostController extends Controller
         // fa semplicemente le 2 funzioni sopra solo che lo fa internamente il sistema \\\ funzione abbreviata 
         $post->tags()->sync($formData["tags"]);
 
+       
+
         $post->update($formData);
 
         return redirect()->route("admin.posts.show", $post->id);
     }
 
     public function destroy($id)
-    {   $post = Post::FindOrFail($id);
+    {  
+        $post = Post::FindOrFail($id);
+        $post->tags()->detach();
 
         $post->delete();
 
         return redirect()->route("admin.posts.index");
+    }
+
+    public function filter(Request $request){
+        $filter =$request->all();
+
+        $post=Post::join("post_tag","posts.id","=","post_tag.post_id")
+            ->where("post_tag.post_id",$filter["tag"])->get();
+
+            return redirect()->route("admin.posts.index")->with(["posts"=>$post]);
     }
 
 

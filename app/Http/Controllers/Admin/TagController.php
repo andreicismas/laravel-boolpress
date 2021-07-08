@@ -16,7 +16,7 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        return view("admin.posts.tags.index",["tags" => $tags]);
+        return view("tags.index",["tags" => $tags]);
         //
     }
 

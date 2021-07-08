@@ -24,7 +24,13 @@
           <tr>
             <td>{{ $tag->id }}</td>
             <td>{{ $tag->name }}</td>
+            
             <td>-{{ $tag->surname }}-</td>
+            <td> <a href="{{route('admin.posts.filter',['tag'=>$tag->id])}}">{{count($tag->posts)  }}</a></td>
+
+        
+
+            {{-- ho provato a creare un post con tags ma non sono riuscito  --}}
            
           </tr>
           @endforeach
