@@ -62,7 +62,7 @@
                      <input name="tags[]"  class="form-check form-check-inline" type="checkbox"  value="{{$tag->id}}" 
                       {{ $post->tags->contains($tag) ? 'checked' : '' }}>
                        
-                     {{$tag->name}}
+                    
                 </label>
                     
                 @endforeach

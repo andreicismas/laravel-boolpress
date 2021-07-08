@@ -2,14 +2,14 @@
 
 @section('content')
 
-paggina unica
+<h1>Paggina unica</h1>
 
-    <div class="row justify-content-center">
-        <a class="pb-5" href="{{ route('admin.posts.index') }}">Torna alla home</a>
-        <a class="pb-5" href="{{ route('admin.posts.create') }}">crea post</a>
-            {{-- <a class="btn btn-primary" href="{{ route('admin.tags.index') }}">tags</a> --}}
-
-    </div>
+   <div class="pb-5 row justify-content-center">
+         <a class="mr-5 btn btn-primary" href="{{ route('posts.index') }}">post publici</a>
+         
+        <a class="mr-5 btn btn-primary " href="{{ route('admin.posts.create') }}">crea nuovo post</a>
+        <a class="mr-5 btn btn-primary" href="{{ route('admin.tags.index') }}">tags</a>
+</div>
     
                 
 
@@ -20,17 +20,20 @@ paggina unica
             <p class="card-text">{{$post->detagli}}</p>
             <p class="card-text">name-- {{$post->user->name}} <br> email--{{$post->user->email}} </p>
             <p class="card-text">{{$post->motivo}} </p> 
-           
             <p class="card-text">{{$post->category ? $post->category->name : '--' }}</p>
 
-
-            <a href="{{route("admin.posts.edit", $post->id)}}" class="btn btn-primary">modifica</a>
+        <div class="row"> 
+            <a  title="edit" href="{{route("admin.posts.edit", $post->id)}}" class="mr-2 btn btn-outline-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="">  @include('partials.components.deleteBtn', ["id" => $post->id])</a>
+        </div>
+          
+            <br>
             @foreach($post->tags as $tag)
                <span class="badge badge-secondary">{{$tag->name}}</span> 
             @endforeach
 
 
-            @include('partials.components.deleteBtn', ["id" => $post->id])
             
         </div>
     </div>

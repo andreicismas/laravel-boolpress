@@ -7,17 +7,10 @@
 
 <div class="pb-5 row justify-content-center">
          <a class="mr-5 btn btn-primary" href="{{ route('posts.index') }}">post publici</a>
-         <a class="mr-5 btn btn-primary " href="{{ route('admin.posts.index') }}">Torna alla home</a>
+         
         <a class="mr-5 btn btn-primary " href="{{ route('admin.posts.create') }}">crea nuovo post</a>
         <a class="mr-5 btn btn-primary" href="{{ route('admin.tags.index') }}">tags</a>
 </div>
-<div class="row justify-content-center">
-
-</div>
-
-
-
-
 
     <table class="table table-dark">
         <thead>
@@ -50,10 +43,10 @@
                     @endforeach
                 </th>
                 <th scope="col">
-                         <a title="detagli" href="{{route("admin.posts.show", $post->id)}}" class="btn btn-outline-success">
+                         <a title="detagli" href="{{route("admin.posts.show", $post->id)}}" class="mr-2 btn btn-outline-success">
                             <i class="fa fa-eye"    aria-hidden="true"></i>
                          </a>
-                        <a title="edit" href="{{route("admin.posts.edit", $post->id)}}" class="btn btn-outline-warning">
+                        <a title="edit" href="{{route("admin.posts.edit", $post->id)}}" class="mr-2 btn btn-outline-warning">
                             <i class="fa fa-pencil" aria-hidden="true"></i></a>
                         @include('partials.components.deleteBtn', ["id" => $post->id])
                 </th>

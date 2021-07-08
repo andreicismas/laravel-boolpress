@@ -1,38 +1,66 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>tutti i post</h1>
-<div class="row justify-content-center">
-    <a class="pb-5" href="{{ route('admin.posts.index') }}">vai alla home privata</a> 
-</div>
-<div class="row justify-content-center">
-    <a class="pb-5" href="{{ route('admin.posts.create') }}">crea post</a>
+<h1>Tutti i post</h1>
+<div class="pb-5 row justify-content-center">
+    <a class="mr-5 btn btn-primary" href="{{ route('admin.posts.index') }}">vai alla home privata</a> 
+           <a class="mr-5 btn btn-primary " href="{{ route('admin.posts.create') }}">crea nuovo post</a>
+    <a class="mr-5 btn btn-primary" href="{{ route('admin.tags.index') }}">tags</a>
 </div>
 
-<div class="row justify-content-center">
+
+
+
+ <table class="table table-dark">
+        <thead>
+            <tr>
+                <th class="underline" scope="col">Titolo</th>
+                <th class="underline" scope="col">Detagli</th>
+                <th class="underline" scope="col">Name</th>
+                <th class="underline" scope="col">Motivo</th>
+                <th class="underline" scope="col">User Mail</th>
+                <th class="underline" scope="col">Categoria</th>
+                <th class="underline" scope="col">Tags</th>
+                <th class="underline" scope="col">Azioni</th>
+                
+            </tr>
+        </thead>
 
 @foreach($posts as $post)
-    <div class="card" style="width: 18rem;">
-         <img src="{{ asset('img\unnamed.png') }}" class="card-img-top" alt="...">
-         
-        <div class="card-body">
-            <h5 class="card-title">{{$post->title}}</h5>
-            <p class="card-text">{{$post->detagli}}</p>
-            <p class="card-text">{{$post->name}}</p>
-            <p class="card-text">{{$post->motivo}}</p>
+   
+         {{-- <img src="{{ asset('img\unnamed.png') }}" class="card-img-top" alt="...">
+          --}}
+          <tbody>
+            <tr>
+           
+                <th  scope="col">{{$post->title}}</th>
+                <th  scope="col">{{$post->detagli}}</th>
+                <th  scope="col">{{$post->name}}</th>
+                <th  scope="col">{{$post->motivo}}</th>
+                <th  scope="col">{{$post->user->email}}</th>
+                <th  scope="col">{{$post->category ? $post->category->name : '--' }}</th>
+                <th  scope="col"> 
+                    @foreach($post->tags as $tag)
+                        <span class="badge badge-secondary">{{$tag->name}}</span> 
+                    @endforeach
+                </th>
+                <th scope="col">
+                         <a title="detagli" href="{{route("admin.posts.show", $post->id)}}" class=" mr-2 btn btn-outline-success">
+                            <i class="fa fa-eye"    aria-hidden="true"></i>
+                         </a>
+                        <a title="edit" href="{{route("admin.posts.edit", $post->id)}}" class=" mr-2 btn btn-outline-warning">
+                            <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        @include('partials.components.deleteBtn', ["id" => $post->id])
+                </th>
 
-            
-            <a href="{{route("posts.show", $post->id)}}" class="btn btn-primary">Dettagli</a>
-            <a href="{{route("admin.posts.edit", $post->id)}}" class="btn btn-primary">modifica</a>
-            <a href="{{route("admin.categories.index", $post->id)}}" class="btn btn-primary">vai in categorie</a>
-
-            @include('partials.components.deleteBtn', ["id" => $post->id])
-
-        </div>
-    </div>
+            </tr>
+        
+        </tbody>
+       
+    
 @endforeach
 
 
-</div>
+
 
 @endsection
