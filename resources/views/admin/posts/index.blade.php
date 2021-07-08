@@ -37,6 +37,7 @@
     @foreach($posts as $post)
         <tbody>
             <tr>
+           
                 <th  scope="col">{{$post->title}}</th>
                 <th  scope="col">{{$post->detagli}}</th>
                 <th  scope="col">{{$post->name}}</th>

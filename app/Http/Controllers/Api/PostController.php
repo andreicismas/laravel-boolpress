@@ -18,6 +18,7 @@ class PostController extends Controller
 
         $posts= Post::all();
         $posts= Post::with("category")->with("tags")->get();
+        
         return response()->json([
             "results"=>true,
             "results"=>$posts,

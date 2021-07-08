@@ -19,7 +19,7 @@ class PostController extends Controller
         $datiInIngresso = session("posts");
 
         if (isset( $datiInIngresso)) {
-            $posts = ["posts"=>$datiInIngresso];
+            $posts = $datiInIngresso;
         }else{
 
             $posts = Post::orderBy("id", "DESC")->get();
@@ -128,9 +128,9 @@ class PostController extends Controller
         $filter =$request->all();
 
         $post=Post::join("post_tag","posts.id","=","post_tag.post_id")
-            ->where("post_tag.post_id",$filter["tag"])->get();
+            ->where("post_tag.tag_id",$filter["tag"])->get();
 
-            return redirect()->route("admin.posts.index")->with(["posts"=>$post]);
+        return redirect()->route("admin.posts.index")->with(["posts"=>$post]);
     }
 
 
