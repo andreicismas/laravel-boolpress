@@ -28,8 +28,7 @@
 
 @foreach($posts as $post)
    
-         {{-- <img src="{{ asset('img\unnamed.png') }}" class="card-img-top" alt="...">
-          --}}
+       
           <tbody>
             <tr>
            

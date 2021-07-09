@@ -8,8 +8,15 @@
 </div>
 @include("partials.components.errors")
 <div class="container">
-    <form action="{{ route('admin.posts.store') }}" method="post" id="postform">
+    <form action="{{ route('admin.posts.store') }}" method="post" id="postform" enctype="multipart/form-data">
         @csrf
+       
+
+        <div  class="form-group">
+            <label for="title"><i class="fa fa-arrow-down" aria-hidden="true"></i>Carica la tua Img di copertina </label>
+
+            <input class="form-control-file" type="file" name="postCover" id="" >
+        </div>
 
         <div class="form-group">
             <label for="title">Titolo</label>

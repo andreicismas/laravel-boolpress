@@ -52,10 +52,13 @@ class PostController extends Controller
        
         $newPost = new post();
         $newPost->fill($newPostData);
+       
         $newPost->user_id = $request->user()->id;
 
+        Storage::put("postCovers", $newPostData["postCover"]);
+
         $newPost->save();
-        // $post->tags()->sync($formData["tags"]);
+        $newPost->tags()->sync($newPostData["tags"]);
 
         return redirect()->route('admin.posts.show', $newPost->id);
     }
@@ -95,20 +98,22 @@ class PostController extends Controller
 
         $formData = $request->all();
 
+        
+        
         if (!key_exists("tags",$formData)) {
             $formData["tags"]=[];
         }
         
-        // le funzioni sotto in versione detagliata 
-
-        // $post->tags()->detach();
-        // $post->tags()->attach($formData["tags"]);
-
-        // fa semplicemente le 2 funzioni sopra solo che lo fa internamente il sistema \\\ funzione abbreviata 
+        
+        
         $post->tags()->sync($formData["tags"]);
-
-       
-
+        
+        Storage::put("postCovers", $formData["postCover"]);
+        
+        // dump($formData);
+        // return;  
+        
+        
         $post->update($formData);
 
         return redirect()->route("admin.posts.show", $post->id);
