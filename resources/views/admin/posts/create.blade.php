@@ -12,11 +12,10 @@
         @csrf
        
 
-        <div  class="form-group">
+        {{-- <div  class="form-group">
             <label for="title"><i class="fa fa-arrow-down" aria-hidden="true"></i>Carica la tua Img di copertina </label>
-
             <input class="form-control-file" type="file" name="postCover" id="" >
-        </div>
+        </div> --}}
 
         <div class="form-group">
             <label for="title">Titolo</label>

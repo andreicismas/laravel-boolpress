@@ -8,9 +8,19 @@
 </div>
 @include("partials.components.errors")
 <div class="container">
-    <form action="{{ route('admin.posts.update', $post) }}" method="post" id="postform">
+      @if($post->cover_url)
+            <img src="{{ asset('storage/'. $post->cover_url) }}" class=".img-fluid" alt="...">
+         @endif
+    <form action="{{ route('admin.posts.update', $post) }}" method="post" id="postform" enctype="multipart/form-data">
         @csrf
-        @method('PATCH')
+        @method('PUT')
+
+          <div  class="form-group">
+            <label for="title"><i class="fa fa-arrow-down" aria-hidden="true"></i>Carica la tua Img di copertina </label>
+            <input class="form-control-file" type="file" name="postCover" id="" accept=".jpg,.png" >
+        </div>
+
+         
 
         <div class="form-group">
             <label for="title">Titolo</label>

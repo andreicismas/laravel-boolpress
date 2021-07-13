@@ -55,13 +55,21 @@ class PostController extends Controller
        
         $newPost->user_id = $request->user()->id;
 
-        Storage::put("postCovers", $newPostData["postCover"]);
+       
+
+        // $storegeResult = Storage::put("postCovers", $newPostData["postCover"]);
+       
+        // $newPostData["cover_url"]=$storegeResult;
+
+       
 
         $newPost->save();
         $newPost->tags()->sync($newPostData["tags"]);
 
         return redirect()->route('admin.posts.show', $newPost->id);
     }
+
+
 
     public function show(Post $post) {
 
@@ -107,15 +115,23 @@ class PostController extends Controller
         
         
         $post->tags()->sync($formData["tags"]);
+        if (key_exists("postCover", $formData)) {
+            if ($post->cover_url) {
+                # code...
+                Storage::delete($post->cover_url);
+            }
         
-        Storage::put("postCovers", $formData["postCover"]);
+            $storegeResult = Storage::put("postCovers", $formData["postCover"]);
+            $formData["cover_url"] = $storegeResult;
+        };
         
-        // dump($formData);
-        // return;  
-        
-        
-        $post->update($formData);
+        // dump($storegeResult);
+        //  return;
+       
 
+
+        $post->update($formData);
+        
         return redirect()->route("admin.posts.show", $post->id);
     }
 

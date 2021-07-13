@@ -14,7 +14,11 @@
                 
 
     <div class="card" style="width: 18rem;">
-         <img src="{{ asset('img\unnamed.png') }}" class="card-img-top" alt="...">
+
+            @if($post->cover_url)
+                <img src="{{ asset('storage/'. $post->cover_url) }}" class="card-img-top" alt="...">
+            @endif
+                    
         <div class="card-body">
             <h5 class="card-title">{{$post->title}}</h5>
             <p class="card-text">{{$post->detagli}}</p>
